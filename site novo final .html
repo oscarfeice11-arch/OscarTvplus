@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> OscarTvPlus | #Top1 Vendedor IPTV Do Brasil - +800 Canais</title>
+    <meta name="description" content=" MAIOR IPTV 4K BRASIL 2025! +800 Canais Netflix HBO Premiere UFC Disney+ 99,9% uptime. Ativação instantânea • Teste grátis 72h • A partir de R$34,90/mês • Suporte 24h">
+    <meta name="keywords" content="iptv, iptv 4k, iptv brasil, oscartvplus, netflix iptv, hbo iptv, ufc iptv, teste grátis iptv">
+    
+    <!-- OPEN GRAPH -->
+    <meta property="og:title" content="OscarTvPlus - #1 IPTV 4K Brasil">
+    <meta property="og:description" content="MAIOR IPTV 4K BRASIL 2025! +800 Canais Netflix HBO Premiere UFC Disney+">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630/000000/ffffff?text=OscarTvPlus">
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'></text></svg>">
+    
+    <!-- FONTES + LIBS -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+
+    <style>
+        :root {
+            /* Paleta estilo Netflix */
+            --bg-main: #000000;
+            --bg-hero: #02040a;
+            --netflix-red: #e50914;
+            --netflix-red-dark: #b0060f;
+            --neon-white: #f9fafb;
+            --neon-border: #ffffff33;
+
+            --glass: rgba(255,255,255,0.05);
+            --glass-dark: rgba(5,5,5,0.92);
+            --shadow-lg: 0 25px 50px rgba(0,0,0,0.7);
+            --shadow-neon: 0 0 30px rgba(229,9,20,0.6);
+        }
+
+        * { 
+            font-family: 'Inter', sans-serif; 
+            box-sizing: border-box; 
+        }
+
+        body { 
+            background: radial-gradient(circle at top, #141414 0%, #000000 55%, #000000 100%);
+            color: var(--neon-white); 
+            overflow-x: hidden; 
+            line-height: 1.6;
+            padding-top: 80px;
+        }
+
+        /* NAVBAR */
+        .navbar { 
+            background: linear-gradient(to bottom, #000000 0%, #000000 40%, #141414 100%); 
+            backdrop-filter: blur(25px); 
+            border-bottom: 1px solid #e5091422; 
+            box-shadow: var(--shadow-lg);
+        }
+        .navbar-brand { 
+            font-family: 'Orbitron', monospace; 
+            font-weight: 900; 
+            font-size: 2rem;
+            color: var(--netflix-red) !important;
+            letter-spacing: 0.12em;
+        }
+        .navbar-brand span {
+            color: var(--neon-white);
+        }
+        .nav-link { 
+            color: #e5e5e5 !important; 
+            font-weight: 500;
+        }
+        .nav-link:hover { 
+            color: #ffffff !important; 
+            text-shadow: 0 0 10px rgba(255,255,255,0.7);
+        }
+
+        /* HERO */
+        .hero { 
+            min-height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            background: radial-gradient(circle at top, #181818 0%, #000000 55%, #000000 100%);
+        }
+        .h1-hero { 
+            font-family: 'Orbitron', monospace; 
+            font-size: clamp(3rem, 8vw, 5rem); 
+            font-weight: 900; 
+            color: #ffffff;
+            text-shadow: 
+                0 0 12px rgba(255,255,255,0.8),
+                0 0 30px rgba(229,9,20,0.7);
+            line-height: 1.1;
+        }
+        .hero-subtitle {
+            color: #e5e5e5;
+        }
+
+        /* CARDS */
+        .card-premium { 
+            background: var(--glass-dark); 
+            backdrop-filter: blur(30px); 
+            border: 1px solid #262626;
+            border-radius: 20px; 
+            transition: all 0.4s ease; 
+            box-shadow: var(--shadow-lg);
+        }
+        .card-premium:hover { 
+            transform: translateY(-12px); 
+            border-color: var(--netflix-red); 
+            box-shadow: var(--shadow-neon);
+        }
+        .badge-popular {
+            position: absolute; 
+            top: -12px; 
+            left: 50%; 
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, #f97316, #facc15); 
+            color: #111827;
+            padding: 6px 20px; 
+            border-radius: 999px; 
+            font-weight: 800; 
+            font-size: 0.8rem;
+            box-shadow: 0 0 15px rgba(249,115,22,0.7);
+        }
+
+        /* cabeçalhos dos planos: só vermelho e preto */
+        .plano-header {
+            background: linear-gradient(135deg, var(--netflix-red), var(--netflix-red-dark));
+            color: #ffffff;
+            border: none;
+        }
+
+        /* BOTÕES */
+        .btn-premium {
+            background: linear-gradient(135deg, var(--netflix-red), var(--netflix-red-dark)); 
+            border: none; 
+            color: #ffffff !important; 
+            font-weight: 700; 
+            padding: 1rem 2.5rem; 
+            border-radius: 999px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            box-shadow: 0 0 20px rgba(229,9,20,0.7); 
+            transition: all 0.3s ease;
+        }
+        .btn-premium:hover { 
+            filter: brightness(1.08);
+            transform: translateY(-3px) scale(1.03); 
+            box-shadow: 0 0 30px rgba(229,9,20,1); 
+        }
+        .btn-whatsapp { 
+            background: linear-gradient(145deg, #25D366, #128C7E) !important; 
+            box-shadow: 0 12px 30px rgba(37,211,102,0.5); 
+            color: #ffffff !important;
+            border-radius: 999px;
+        }
+
+        /* COUNTDOWN */
+        .countdown-card {
+            background: #000000;
+            border-radius: 18px;
+            border: 1px solid var(--netflix-red);
+            box-shadow: 0 0 25px rgba(229,9,20,0.4);
+        }
+        .countdown-item { 
+            background: #141414; 
+            color: #ffffff; 
+            padding: 1.25rem; 
+            border-radius: 10px; 
+            font-weight: 800; 
+            font-size: 2.25rem; 
+            min-width: 80px; 
+            border: 1px solid #e50914aa;
+            text-shadow: 0 0 15px rgba(255,255,255,0.9);
+        }
+
+        /* WHATSAPP FLOAT */
+        .whatsapp-hub { position: fixed; bottom: 30px; right: 30px; z-index: 99999; }
+        .whatsapp-float-main { 
+            width: 72px; height: 72px; border-radius: 50%; 
+            background: linear-gradient(145deg, #25D366, #128C7E);
+            display: flex; align-items: center; justify-content: center; 
+            text-decoration: none;
+            box-shadow: 0 12px 35px rgba(37,211,102,0.7); 
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float { 
+            0%, 100% { transform: translateY(0); } 
+            50% { transform: translateY(-10px); } 
+        }
+
+        /* SEÇÕES FUNDO ESCURO */
+        #canais, #depoimentos {
+            background: #050505;
+        }
+        #planos {
+            background: radial-gradient(circle at top, #111111 0%, #000000 60%);
+        }
+
+        /* TÍTULOS DE SESSÃO */
+        .section-title {
+            font-size: clamp(2.5rem, 6vw, 4.5rem); 
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 0 0 14px rgba(255,255,255,0.8);
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 768px) {
+            body { padding-top: 90px; }
+            .h1-hero { font-size: 3rem !important; }
+            .canais-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- PROGRESS BAR -->
+    <div class="scroll-progress" id="scrollProgress" style="position:fixed;top:0;left:0;width:0%;height:4px;background:linear-gradient(90deg,#e50914,#ffffff);z-index:9999;box-shadow:0 0 20px #e50914;transition:width 0.3s ease;"></div>
+
+    <!-- WHATSAPP FLOAT -->
+    <div class="whatsapp-hub">
+        <a href="https://wa.me/5511982833176?text= Olá! Quero o TESTE GRÁTIS 72h do OscarTvPlus!" class="whatsapp-float-main">
+            <i class="fab fa-whatsapp" style="font-size:2.3rem;color:white;"></i>
+        </a>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#hero">
+                <i class="fas fa-crown" style="color:var(--netflix-red);margin-right:10px;"></i>
+                Oscar<span>TVPlus</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fas fa-bars fs-3"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#hero"> Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#canais"> Canais</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#planos"> Planos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#depoimentos"> Avaliações</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="hero" class="hero">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 text-center" data-aos="fade-up">
+                    <h1 class="h1-hero mb-4"> #Top1 Melhor IPTV do BRASIL</h1>
+                    <h2 class="display-4 fw-bold mb-4" style="color:var(--netflix-red);text-shadow:0 0 18px rgba(229,9,20,0.8);">+800 Canais Premium 24/7</h2>
+
+                    <p class="lead fs-3 fw-semibold mb-3 hero-subtitle">
+                        Netflix • HBO • Premiere • UFC • Disney+ • Globoplay<br>
+                        <span style="color:#facc15;"> 100% 4K •  Ativação Instantânea •  Suporte VIP 24h</span>
+                    </p>
+
+                    <!-- NOVAS INFORMAÇÕES 2025 / QUALIDADE -->
+                    <p class="lead fs-4 fw-semibold mb-2">
+                        Em 2025 você assiste aos principais lançamentos de filmes e séries dos maiores estúdios, com acesso rápido após a estreia oficial e sem travamentos.
+                    </p>
+                    <p class="fs-5 mb-3">
+                        Canais em Full HD e 4K quando disponível, som digital limpo e estabilidade com uptime médio de 99,9%, perfeitos para maratonar temporadas e acompanhar campeonatos ao vivo.
+                    </p>
+                    <ul class="list-unstyled fs-5 mb-5">
+                        <li>• Catálogo atualizado diariamente com novidades de 2025.</li>
+                        <li>• Funciona em Smart TV, TV Box, celular e computador com uma única assinatura.</li>
+                        <li>• Suporte rápido via WhatsApp para configurar em qualquer dispositivo.</li>
+                    </ul>
+
+                    <!-- COUNTDOWN -->
+                    <div class="countdown-card mx-auto mb-5 p-4" data-aos="zoom-in" data-aos-delay="300" style="max-width:480px;">
+                        <h5 class="fw-bold mb-4" style="color:#facc15;"> PROMOÇÃO TERMINA EM:</h5>
+                        <div class="d-flex justify-content-center gap-3">
+                            <div class="countdown-item" id="hours">02</div>
+                            <span class="align-self-center fs-4 text-white">:</span>
+                            <div class="countdown-item" id="minutes">00</div>
+                            <span class="align-self-center fs-4 text-white">:</span>
+                            <div class="countdown-item" id="seconds">00</div>
+                        </div>
+                    </div>
+
+                    <!-- PREÇOS RESUMO -->
+                    <div class="row g-4 mb-5 justify-content-center" data-aos="fade-up" data-aos-delay="500">
+                        <div class="col-md-3">
+                            <div class="card-premium text-center p-4 h-100">
+                                <h3 style="color:var(--netflix-red);font-size:2.5rem;font-weight:900;">R$ 34,90</h3>
+                                <div class="h5 fw-bold mb-2">1 MÊS</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card-premium text-center p-4 h-100 position-relative">
+                                <div class="badge-popular"> Promoção</div>
+                                <h3 style="color:var(--netflix-red);font-size:2.5rem;font-weight:900;">R$ 55,00</h3>
+                                <div class="h5 fw-bold mb-2">2 MESES</div>
+                                <small>Melhor teste custo-benefício</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card-premium text-center p-4 h-100">
+                                <h3 style="color:var(--netflix-red);font-size:2.5rem;font-weight:900;">R$ 249,99</h3>
+                                <div class="h5 fw-bold mb-2">12 MESES</div>
+                                <small> Melhor preço anual</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CTAs -->
+                    <div class="d-flex flex-column flex-lg-row gap-3 justify-content-center" data-aos="fade-up" data-aos-delay="700">
+                        <a href="#planos" class="btn btn-premium btn-lg px-5 py-3 flex-fill">
+                            <i class="fas fa-rocket me-2"></i>Comprar Agora
+                        </a>
+                        <a href="https://wa.me/5511982833176?text= Quero todos os canais liberados do OscarTvPlus!" class="btn btn-whatsapp btn-lg px-5 py-3 flex-fill">
+                            <i class="fab fa-whatsapp me-2"></i>(11) 98283-3176
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CANAIS -->
+    <section id="canais" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5 section-title" data-aos="fade-up">
+                 +800 Canais 4K Disponíveis
+            </h2>
+            <div class="canais-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;">
+                <div class="canal-card text-center p-4 rounded-4" data-aos="fade-up" data-aos-delay="100" style="background:var(--glass);border:1px solid #262626;backdrop-filter:blur(20px);transition:all 0.3s ease;">
+                    <span style="font-size:3.5rem;display:block;margin-bottom:1rem;"></span><h5>BBB Brasil</h5><small>Todas as câmeras 24h</small>
+                </div>
+                <div class="canal-card text-center p-4 rounded-4" data-aos="fade-up" data-aos-delay="150" style="background:var(--glass);border:1px solid #262626;backdrop-filter:blur(20px);transition:all 0.3s ease;">
+                    <span style="font-size:3.5rem;display:block;margin-bottom:1rem;"></span><h5>A Fazenda</h5><small>Ao vivo completo</small>
+                </div>
+                <div class="canal-card text-center p-4 rounded-4" data-aos="fade-up" data-aos-delay="200" style="background:var(--glass);border:1px solid #262626;backdrop-filter:blur(20px);transition:all 0.3s ease;">
+                    <span style="font-size:3.5rem;display:block;margin-bottom:1rem;"></span><h5>Premiere</h5><small>Brasileirão HD</small>
+                </div>
+                <div class="canal-card text-center p-4 rounded-4" data-aos="fade-up" data-aos-delay="250" style="background:var(--glass);border:1px solid #262626;backdrop-filter:blur(20px);transition:all 0.3s ease;">
+                    <span style="font-size:3.5rem;display:block;margin-bottom:1rem;"></span><h5>UFC Fight</h5><small>PPV incluído</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PLANOS -->
+    <section id="planos" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title"> Planos Mensal e Anual</h2>
+                <p class="fs-3 fw-semibold mb-0" style="color:#facc15;"> Cartão, PIX e Boleto • Ativação em até 5 minutos</p>
+            </div>
+
+            <!-- LINHA 1: 1, 2, 3 meses -->
+            <div class="row g-4">
+                <!-- 1 MÊS -->
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-premium h-100 p-4 position-relative">
+                        <div class="card-header text-center py-4 mb-4 rounded-3 plano-header">
+                            <h4 class="mb-3 fw-bold fs-4">1 MÊS</h4>
+                            <h3 class="fw-black fs-1">R$ 34,90</h3>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-unstyled mb-4 fs-5">
+                                <li class="mb-2">• +800 canais HD e 4K</li>
+                                <li class="mb-2">• Filmes e séries 2025 liberados</li>
+                                <li class="mb-2">• Suporte 24h via WhatsApp</li>
+                            </ul>
+                            <button class="btn btn-premium w-100 fs-5 py-3"
+                                    onclick="initCheckout('1mes', 3490, '1 Mês OscarTvPlus')">
+                                Assinar 1 mês
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2 MESES PROMO -->
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="150">
+                    <div class="card-premium h-100 p-4 position-relative">
+                        <div class="badge-popular"> Promoção</div>
+                        <div class="card-header text-center py-4 mb-4 rounded-3 plano-header">
+                            <h4 class="mb-3 fw-bold fs-4">2 MESES</h4>
+                            <h3 class="fw-black fs-1">R$ 55,00</h3>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-unstyled mb-4 fs-5">
+                                <li class="mb-2">• Melhor custo-benefício para testar</li>
+                                <li class="mb-2">• Acesso total a canais + VOD</li>
+                                <li class="mb-2">• Renovação facilitada pelo WhatsApp</li>
+                            </ul>
+                            <button class="btn btn-premium w-100 fs-5 py-3"
+                                    onclick="initCheckout('2meses', 5500, '2 Meses OscarTvPlus Promoção')">
+                                Assinar 2 meses
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3 MESES -->
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-premium h-100 p-4 position-relative">
+                        <div class="card-header text-center py-4 mb-4 rounded-3 plano-header">
+                            <h4 class="mb-3 fw-bold fs-4">3 MESES</h4>
+                            <h3 class="fw-black fs-1">R$ 85,00</h3>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-unstyled mb-4 fs-5">
+                                <li class="mb-2">• Plano ideal para maratonar temporadas</li>
+                                <li class="mb-2">• Atualizações automáticas de canais</li>
+                                <li class="mb-2">• Suporte prioritário</li>
+                            </ul>
+                            <button class="btn btn-premium w-100 fs-5 py-3"
+                                    onclick="initCheckout('3meses', 8500, '3 Meses OscarTvPlus')">
+                                Assinar 3 meses
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LINHA 2: 6 e 12 meses -->
+            <div class="row g-4 mt-4">
+                <!-- 6 MESES -->
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="250">
+                    <div class="card-premium h-100 p-4 position-relative">
+                        <div class="card-header text-center py-4 mb-4 rounded-3 plano-header">
+                            <h4 class="mb-3 fw-bold fs-4">6 MESES</h4>
+                            <h3 class="fw-black fs-1">R$ 152,80</h3>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-unstyled mb-4 fs-5">
+                                <li class="mb-2">• Economia para quem assiste todo dia</li>
+                                <li class="mb-2">• Filmes e séries recém-lançados sempre disponíveis</li>
+                                <li class="mb-2">• Excelente estabilidade para campeonatos e eventos</li>
+                            </ul>
+                            <button class="btn btn-premium w-100 fs-5 py-3"
+                                    onclick="initCheckout('6meses', 15280, '6 Meses OscarTvPlus')">
+                                Assinar 6 meses
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 12 MESES -->
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card-premium h-100 p-4 position-relative">
+                        <div class="card-header text-center py-4 mb-4 rounded-3 plano-header">
+                            <h4 class="mb-3 fw-bold fs-4">12 MESES</h4>
+                            <h3 class="fw-black fs-1">R$ 249,99</h3>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-unstyled mb-4 fs-5">
+                                <li class="mb-2">• Melhor preço anual para a família inteira</li>
+                                <li class="mb-2">• Suporte dedicado durante todo o ano</li>
+                                <li class="mb-2">• Ideal para quem quer esquecer renovação mensal</li>
+                            </ul>
+                            <button class="btn btn-premium w-100 fs-5 py-3"
+                                    onclick="initCheckout('12meses', 24999, '12 Meses OscarTvPlus')">
+                                Assinar 12 meses
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BLOCO REVENDAS (SEM PREÇO) -->
+            <div class="mt-5" data-aos="fade-up" data-aos-delay="350">
+                <div class="card-premium p-4 text-center">
+                    <h3 class="mb-3" style="color:var(--netflix-red);">Revenda Autorizada OscarTvPlus</h3>
+                    <p class="fs-5 mb-2">
+                        Quer revender nossos planos na sua cidade ou online?
+                    </p>
+                    <p class="fs-5 mb-4">
+                        Oferecemos painel próprio para revenda, criação de listas, suporte especializado e condições exclusivas para parceiros que desejam lucrar com IPTV.
+                    </p>
+                    <a href="https://wa.me/5511982833176?text=Quero%20ser%20revendedor%20OscarTvPlus"
+                       class="btn btn-premium px-5 py-3">
+                        Falar sobre revenda
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEPOIMENTOS -->
+    <section id="depoimentos" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5 section-title" data-aos="fade-up">
+                 O que nossos clientes dizem
+            </h2>
+            <div class="row g-4">
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="p-4 rounded-4" style="background:var(--glass);border-left:5px solid var(--netflix-red);backdrop-filter:blur(20px);box-shadow:var(--shadow-lg);">
+                        <div class="fs-5 mb-4">"Motorista de app 12h/dia e agora assisto Premiere no celular entre corridas. Netflix, HBO e UFC por R$34,90! INCRÍVEL!"</div>
+                        <div class="fw-bold fs-5 mt-3 mb-2"> José Silva - Uber</div>
+                        <div class="fs-4" style="color:#facc15;"></div>
+                    </div>
+                </div>
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="p-4 rounded-4" style="background:var(--glass);border-left:5px solid var(--netflix-red);backdrop-filter:blur(20px);box-shadow:var(--shadow-lg);">
+                        <div class="fs-5 mb-4">"Minhas filhas amam Disney+ e eu vejo novelas sem pagar R$100 de TV a cabo. Pelo preço de 1 pizza tenho TUDO!"</div>
+                        <div class="fw-bold fs-5 mt-3 mb-2"> Maria Santos - Dona de casa</div>
+                        <div class="fs-4" style="color:#facc15;"></div>
+                    </div>
+                </div>
+                <!-- você pode adicionar mais depoimentos copiando o bloco acima -->
+            </div>
+        </div>
+    </section>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // INICIALIZAÇÕES
+        AOS.init({ duration: 1000, once: true, offset: 100 });
+
+        // PROGRESS BAR
+        let ticking = false;
+        function updateProgress() {
+            const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            document.getElementById('scrollProgress').style.width = scrolled + '%';
+            ticking = false;
+        }
+        window.addEventListener('scroll', () => {
+            if (!ticking) { requestAnimationFrame(updateProgress); ticking = true; }
+        });
+
+        // COUNTDOWN 2 HORAS (DEBUG: 2 MINUTOS)
+        let countdownTimer = null;
+        function initCountdown(debug = false) {
+            const duration = debug ? 2 * 60 * 1000 : 2 * 60 * 60 * 1000;
+            const endTime = Date.now() + duration;
+            
+            function updateCountdown() {
+                const now = Date.now();
+                const remaining = endTime - now;
+                
+                if (remaining <= 0) {
+                    document.getElementById('hours').textContent = '00';
+                    document.getElementById('minutes').textContent = '00';
+                    document.getElementById('seconds').textContent = '00';
+                    return;
+                }
+                
+                const hours = Math.floor(remaining / (1000 * 60 * 60));
+                const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
+                
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            }
+            
+            updateCountdown();
+            countdownTimer = setInterval(updateCountdown, 1000);
+        }
+        initCountdown(true); // DEBUG = true (2 minutos)
+
+        // MERCADO PAGO (exemplo simplificado)
+        const mp = new MercadoPago('SUA_PUBLIC_KEY_AQUI', { locale: 'pt-BR' });
+        window.initCheckout = function(plan, amount, title) {
+            mp.checkout({ preference: { id: 'PREFERENCIA_ID' } });
+            window.open('https://wa.me/5511982833176?text= Quero comprar o plano ' + title, '_blank');
+        };
+
+        // SMOOTH SCROLL
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
